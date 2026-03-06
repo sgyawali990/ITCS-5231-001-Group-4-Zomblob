@@ -12,11 +12,29 @@ public class CratePickup : MonoBehaviour
 
             if (socket != null)
             {
+                // Clear old weapon
+                foreach (Transform child in socket)
+                {
+                    Destroy(child.gameObject);
+                }
+
+                // Spawn and scale
                 GameObject weapon = Instantiate(weaponPrefab, socket);
+                weapon.transform.localScale = Vector3.one;
 
-                weapon.transform.localPosition = Vector3.zero;
+                // Grip allignment
+                Transform grip = weapon.transform.Find("WeaponGrip");
 
-                weapon.transform.localRotation = weaponPrefab.transform.localRotation;
+                if (grip != null)
+                {
+                    weapon.transform.position = socket.position - grip.localPosition;
+                    weapon.transform.rotation = socket.rotation * Quaternion.Inverse(grip.localRotation);
+                }
+                else
+                {
+                    weapon.transform.localPosition = Vector3.zero;
+                    weapon.transform.localRotation = Quaternion.identity;
+                }
             }
 
             Destroy(gameObject);

@@ -2,25 +2,27 @@ using UnityEngine;
 
 public class BatController : MonoBehaviour
 {
-    public float swingTime = 0.30f;
-    public float swingAngle = 80f;
+    [Header("Swing Settings")]
+    public float swingTime = 0.35f;
+    public float swingAngle = 95f;
+    public float verticalOffset = 30f;
+
+    [Header("Damage")]
     public float damage = 20f;
-
-    private bool swinging = false;
-    private bool hitSomething = false;
-
-    private float timer = 0f;
-
-    private Quaternion startRot;
-    private Quaternion targetRot;
-
+    private bool swinging;
+    private bool hitSomething;
+    private float timer;
+    private Quaternion neutralRot;
+    private Quaternion startArc;
+    private Quaternion endArc;
     private bool swingLeft = true;
+
 
     void Start()
     {
-        // capture correct rotation AFTER parenting
-        startRot = transform.localRotation;
+        neutralRot = transform.localRotation;
     }
+
 
     void Update()
     {
@@ -29,32 +31,26 @@ public class BatController : MonoBehaviour
             StartSwing();
         }
 
-        if (swinging)
-        {
-            timer += Time.deltaTime;
-            float halfTime = swingTime / 2f;
+        if (!swinging) return;
 
-            if (timer <= halfTime)
-            {
-                // Swing Forward
-                float t = timer / halfTime;
-                t = Mathf.SmoothStep(0f, 1f, t);
-                transform.localRotation = Quaternion.Lerp(startRot, targetRot, t);
-            }
-            else if (timer <= swingTime)
-            {
-                // Return Swing
-                float t = (timer - halfTime) / halfTime;
-                transform.localRotation = Quaternion.Lerp(targetRot, startRot, t);
-            }
-            else
-            {
-                swinging = false;
-                timer = 0f;
-                transform.localRotation = startRot;
-            }
+        timer += Time.deltaTime;
+
+        float t = timer / swingTime;
+
+
+        if (t <= 1f)
+        {
+            float smooth = Mathf.SmoothStep(0f, 1f, t);
+
+            transform.localRotation =
+                Quaternion.Slerp(startArc, endArc, smooth);
+        }
+        else
+        {
+            EndSwing();
         }
     }
+
 
     void StartSwing()
     {
@@ -62,35 +58,35 @@ public class BatController : MonoBehaviour
         timer = 0f;
         hitSomething = false;
 
-        float dir = swingLeft ? -1f : 1f;
+        float dir = swingLeft ? 1f : -1f;
 
-        targetRot = startRot * Quaternion.Euler(-30f, dir * swingAngle, 20f);
+        startArc = neutralRot * Quaternion.Euler(-verticalOffset, -dir * swingAngle, 0);
+
+        endArc = neutralRot * Quaternion.Euler(verticalOffset, dir * swingAngle, 0);
 
         swingLeft = !swingLeft;
     }
+
+
+    void EndSwing()
+    {
+        swinging = false;
+
+        transform.localRotation = neutralRot;
+    }
+
 
     void OnTriggerEnter(Collider other)
     {
         if (!swinging || hitSomething)
             return;
 
-        IDamageable dmg = other.GetComponent<IDamageable>();
-
-        if (dmg != null)
+        // Check if object can take damage
+        if (other.TryGetComponent<IDamageable>(out var dmg))
         {
             dmg.TakeDamage(damage);
+
             hitSomething = true;
-
-            Rigidbody rb = other.GetComponent<Rigidbody>();
-
-            if (rb != null)
-            {
-                Vector3 knockDir = (other.transform.position - transform.position);
-                knockDir.y = 0;
-                knockDir.Normalize();
-
-                rb.AddForce(knockDir * 6f, ForceMode.Impulse);
-            }
         }
     }
 }

@@ -31,6 +31,11 @@ public class PlayerController : MonoBehaviour
         camForward.Normalize();
         camRight.Normalize();
 
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Cursor.visible = !Cursor.visible;
+        }
+
         Vector3 moveDir = camForward * v + camRight * h;
 
         Rigidbody rb = GetComponent<Rigidbody>();

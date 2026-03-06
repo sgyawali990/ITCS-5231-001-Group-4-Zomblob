@@ -17,6 +17,12 @@ public class WeaponController : MonoBehaviour
 
     void Start()
     {
+        if (fireInput == null)
+            fireInput = Object.FindFirstObjectByType<FireInput>();
+
+        if (playerController == null)
+            playerController = Object.FindFirstObjectByType<PlayerController>();
+
         if (line != null)
             line.positionCount = 2;
     }
@@ -28,8 +34,7 @@ public class WeaponController : MonoBehaviour
 
         Vector3 origin = firePoint.position;
 
-        // Compute direction from muzzle ? aim point
-        Vector3 dir = (playerController.AimPoint - origin).normalized;
+        Vector3 dir = firePoint.forward;
 
         // Update aim line every frame
         if (dir.sqrMagnitude > 0.001f && line != null)
@@ -58,23 +63,34 @@ public class WeaponController : MonoBehaviour
 
     void Fire(Vector3 origin, Vector3 dir)
     {
-        // Safety check
         if (dir.sqrMagnitude < 0.001f)
             return;
 
         Ray ray = new Ray(origin, dir);
 
-        // Debug ray
-        Debug.DrawRay(origin, dir * range, Color.red, 0.1f);
+        Debug.DrawRay(origin, dir * range, Color.red, 0.2f);
 
         if (Physics.Raycast(ray, out RaycastHit hit, range))
         {
-            Debug.Log("Hit: " + hit.collider.name);
-
             IDamageable damageable = hit.collider.GetComponent<IDamageable>();
+
             if (damageable != null)
             {
                 damageable.TakeDamage(damage);
+            }
+
+            if (line != null)
+            {
+                line.SetPosition(0, origin);
+                line.SetPosition(1, hit.point);
+            }
+        }
+        else
+        {
+            if (line != null)
+            {
+                line.SetPosition(0, origin);
+                line.SetPosition(1, origin + dir * range);
             }
         }
     }

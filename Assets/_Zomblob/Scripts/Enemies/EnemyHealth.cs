@@ -73,8 +73,12 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
         if (rb != null)
         {
-            rb.linearVelocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
+            if (!rb.isKinematic)
+            {
+                rb.linearVelocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+            }
+
             rb.isKinematic = true;
         }
 
@@ -113,20 +117,20 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         owningPool = pool;
         currentHealth = maxHealth;
 
-        if (rb != null)
+        if (!rb.isKinematic)
         {
-            rb.isKinematic = true;
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
 
-        UnityEngine.AI.NavMeshAgent agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        rb.isKinematic = true;
+
         if (agent != null)
         {
+            agent.enabled = false;
             agent.enabled = true;
         }
-        
     }
 
-    
+
 }

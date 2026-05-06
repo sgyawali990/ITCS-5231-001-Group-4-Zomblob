@@ -33,7 +33,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     [Header("Ammo Drop")]
     [SerializeField] private GameObject ammoBoxPrefab;
-    [SerializeField] private float ammoDropChance = 0.3f;
+    [SerializeField] private float ammoDropChance = 0.1f;
 
 
     private void Awake()

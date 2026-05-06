@@ -4,6 +4,7 @@ using System;
 
 public class WaveManager : MonoBehaviour
 {
+    public CrateSpawner crateSpawner;
     [SerializeField] private ZombieSpawner spawner;
     [SerializeField] private int baseCount = 5;
     [SerializeField] private float breakBetweenWaves = 5f;
@@ -39,6 +40,8 @@ public class WaveManager : MonoBehaviour
         waveIndex++;
         waveCount = waveIndex;
 
+        crateSpawner.SpawnRandomCrate();
+
         bool isBossWave = waveIndex % bossEveryNWaves == 0;
 
         int toSpawn = baseCount + waveIndex * 2;
@@ -50,20 +53,18 @@ public class WaveManager : MonoBehaviour
 
         Debug.Log($"========== WAVE {waveIndex}/{maxWaves} ==========");
 
-        // IMPORTANT CHANGE:
-        // Wait until ALL zombies for this wave finish spawning
+        
         yield return StartCoroutine(
             spawner.BeginWaveRoutine(toSpawn, waveIndex)
         );
 
-        // Spawn boss after normal zombies finish spawning
+        
         if (isBossWave)
         {
             spawner.SpawnBoss();
         }
 
-        // IMPORTANT CHANGE:
-        // Wait until every spawned enemy is dead
+        
         while (alive > 0)
         {
             Debug.Log($"Waiting... Enemies Alive: {alive}");

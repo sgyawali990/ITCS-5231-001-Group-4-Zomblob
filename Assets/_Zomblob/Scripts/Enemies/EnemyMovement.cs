@@ -104,16 +104,5 @@ public class EnemyMovement : MonoBehaviour
     }
 
 
-//     private void OnCollisionStay(Collision collision)
-//     {
-//         if (Time.time < nextAttackTime)
-//             return;
 
-//         if (collision.gameObject.TryGetComponent<PlayerHealth>(out PlayerHealth player))
-//         {
-//             player.TakeDamage((int)damage);
-
-//             nextAttackTime = Time.time + attackCooldown;
-//         }
-//     }
 }

@@ -428,7 +428,7 @@ MonoBehaviour:
   muzzleFlashScale: 1
   muzzleFlashCount: 6
   tracerWidth: 0.035
-  fireSound: {fileID: 8300000, guid: 343e3ef5de120714e9b81d057723282e, type: 3}
+  fireSound: {fileID: 8300000, guid: f490c707a4513ce4fbebc07fc26a8044, type: 3}
   reloadSound: {fileID: 8300000, guid: 5e14f248da789224dbaeb5deb63e81fa, type: 3}
   fireVolume: 0.75
   reloadVolume: 1

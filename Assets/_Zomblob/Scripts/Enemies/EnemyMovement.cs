@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -65,44 +66,50 @@ public class EnemyMovement : MonoBehaviour
         if (playerTransform == null)
             return;
 
-        // Repath timer
-        repathTimer -= Time.deltaTime;
-
-        if (repathTimer <= 0f)
+        if (!agent.isStopped)
         {
-            agent.SetDestination(playerTransform.position);
-            repathTimer = repathRate;
+            repathTimer -= Time.deltaTime;
+            if (repathTimer <= 0f)
+            {
+                agent.SetDestination(playerTransform.position);
+                repathTimer = repathRate;
+            }
         }
 
         animator.SetFloat("speed", agent.velocity.magnitude);
 
-        if(Time.time < nextAttackTime)
+        if (Time.time < nextAttackTime)
         {
             return;
         }
 
         float dist = Vector3.Distance(transform.position, playerTransform.position);
 
-        if(dist <= attackRange)
+        if (dist <= attackRange)
         {
+            agent.isStopped = true;
+            agent.ResetPath();
 
-            animator.SetTrigger("attack");  
-            if(playerTransform.TryGetComponent<PlayerHealth>(out PlayerHealth health))
+            animator.SetTrigger("attack");
+
+            if (playerTransform.TryGetComponent<PlayerHealth>(out PlayerHealth health))
             {
-                Debug.Log("Found PlayerHealth");
-                
                 health.TakeDamage(damage);
                 nextAttackTime = Time.time + attackCooldown;
-                
-            }
-            else
-            {
-                Debug.Log("PlayerHealth NOT FOUND");
-                agent.isStopped = false;
+                StartCoroutine(ResumeMovementAfterDelay());
             }
         }
     }
 
+    IEnumerator ResumeMovementAfterDelay()
+    {
+        yield return new WaitForSeconds(0.6f);
 
+        if (agent != null && agent.enabled)
+        {
+            agent.isStopped = false;
+            agent.SetDestination(playerTransform.position);
+        }
+    }
 
 }

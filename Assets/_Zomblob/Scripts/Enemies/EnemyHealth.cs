@@ -247,10 +247,17 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
         if (roll < ammoDropChance)
         {
-            Vector3 dropPos = transform.position + Vector3.up * 0.5f;
-            Instantiate(ammoBoxPrefab, dropPos, Quaternion.identity);
+            Vector3 spawnOrigin = transform.position + Vector3.up * 1.0f;
+            Vector3 finalDropPos = transform.position; 
 
-            Debug.Log($"Ammo dropped from {name}");
+            if (Physics.Raycast(spawnOrigin, Vector3.down, out RaycastHit hit, 5f))
+            {
+                finalDropPos = hit.point;
+            }
+
+            Instantiate(ammoBoxPrefab, finalDropPos, Quaternion.identity);
+
+            Debug.Log($"Ammo dropped at {finalDropPos} from {name}");
         }
         else
         {

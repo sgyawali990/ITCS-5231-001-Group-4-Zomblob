@@ -13778,8 +13778,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: QUIT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -17930,8 +17930,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Go Home
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -21236,8 +21236,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: CONTINUE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -24159,8 +24159,24 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2198716056989520779, guid: 4b0cd74701bb09841b7700c3e78fb769, type: 3}
       propertyPath: isDead
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2198716056989520779, guid: 4b0cd74701bb09841b7700c3e78fb769, type: 3}
+      propertyPath: fillImage
+      value: 
+      objectReference: {fileID: 1903459070}
+    - target: {fileID: 2198716056989520779, guid: 4b0cd74701bb09841b7700c3e78fb769, type: 3}
+      propertyPath: healthText
+      value: 
+      objectReference: {fileID: 1861191953}
+    - target: {fileID: 2198716056989520779, guid: 4b0cd74701bb09841b7700c3e78fb769, type: 3}
+      propertyPath: healthSlider
+      value: 
+      objectReference: {fileID: 1248030086}
+    - target: {fileID: 2198716056989520779, guid: 4b0cd74701bb09841b7700c3e78fb769, type: 3}
+      propertyPath: damageFlashImage
+      value: 
+      objectReference: {fileID: 1903459070}
     - target: {fileID: 2295771522265055430, guid: 4b0cd74701bb09841b7700c3e78fb769, type: 3}
       propertyPath: m_Name
       value: PlayerRoot (1)

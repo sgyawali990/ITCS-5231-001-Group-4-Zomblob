@@ -1278,9 +1278,9 @@ MonoBehaviour:
   - {fileID: 1208148576}
   - {fileID: 1838358689}
   - {fileID: 1189542753}
-  timeBetweenSpawns: 0.5
+  timeBetweenSpawns: 2
   spawnRadius: 10
-  player: {fileID: 0}
+  player: {fileID: 632881323}
   minDistanceFromPlayer: 5
 --- !u!4 &50378148
 Transform:
@@ -2106,6 +2106,53 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2caeb99d3229fee4aa4f3bc8c1c8fc07, type: 3}
+--- !u!1 &82083365
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 82083367}
+  - component: {fileID: 82083366}
+  m_Layer: 0
+  m_Name: CrateSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &82083366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82083365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5269eae327ac0e74da55c40c757e2cc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CrateSpawner
+  MysteryBarrelPrefab: {fileID: 7411488131376627180, guid: 67af77703df52364c99384c985e256d5, type: 3}
+  spawnPoint:
+  - {fileID: 1595647579}
+--- !u!4 &82083367
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82083365}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.12026, y: -0.14735, z: 5.95264}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &82556649
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22368,7 +22415,7 @@ Transform:
   m_GameObject: {fileID: 1038886786}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.68, y: 0.00001, z: 41.41}
+  m_LocalPosition: {x: -13.68, y: 1, z: 41.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24223,6 +24270,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2198716056989520779, guid: 4b0cd74701bb09841b7700c3e78fb769, type: 3}
+      propertyPath: isDead
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2295771522265055430, guid: 4b0cd74701bb09841b7700c3e78fb769, type: 3}
       propertyPath: m_Name
       value: PlayerRoot (1)
@@ -25265,7 +25316,7 @@ Transform:
   m_GameObject: {fileID: 1189542752}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -40.69, y: 0.00001, z: 22.58}
+  m_LocalPosition: {x: 15, y: 1, z: 15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25708,7 +25759,7 @@ Transform:
   m_GameObject: {fileID: 1208148575}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -29.1, y: 0.00001, z: -26.9}
+  m_LocalPosition: {x: 20.6, y: 1, z: 18.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -33209,7 +33260,7 @@ Transform:
   m_GameObject: {fileID: 1575590707}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41.37, y: -2.04, z: -32.78}
+  m_LocalPosition: {x: 32.8, y: 1, z: -19.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -33375,7 +33426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5ed7e9f6a457d4685e1b0e9789c608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
-  crateSpawner: {fileID: 0}
+  crateSpawner: {fileID: 82083366}
   spawner: {fileID: 50378147}
   baseCount: 5
   breakBetweenWaves: 5
@@ -33392,6 +33443,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.65319, y: 0.00001, z: 4.30357}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1595647578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1595647579}
+  m_Layer: 0
+  m_Name: CrateSpawnP1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1595647579
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595647578}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.63, y: 0.00001, z: 2.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -33639,7 +33721,7 @@ Transform:
   m_GameObject: {fileID: 1598595855}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.68, y: 0.00001, z: 27.99}
+  m_LocalPosition: {x: 24.68, y: 1, z: 27.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -38155,7 +38237,7 @@ Transform:
   m_GameObject: {fileID: 1838358688}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.57, y: 0.00001, z: 38.97}
+  m_LocalPosition: {x: -0.57, y: 1, z: 38.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44546,12 +44628,14 @@ SceneRoots:
   - {fileID: 50378148}
   - {fileID: 424291681}
   - {fileID: 1850325406}
+  - {fileID: 82083367}
   - {fileID: 1575590708}
   - {fileID: 1038886787}
   - {fileID: 1598595856}
   - {fileID: 1208148576}
   - {fileID: 1838358689}
   - {fileID: 1189542753}
+  - {fileID: 1595647579}
   - {fileID: 1774422869}
   - {fileID: 1263355353}
   - {fileID: 395223113}

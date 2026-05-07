@@ -26,6 +26,9 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [Header("DeathTimer")]
     [SerializeField] private float deathTimer = 2f;
 
+    [Header("Death Effects")]
+    [SerializeField] private AudioClip[] deathSounds;
+
     private Rigidbody rb;
     private NavMeshAgent agent;
     private ZombiePool owningPool;
@@ -114,6 +117,18 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         if (rb != null)
         {
             rb.isKinematic = false;
+        }
+
+        if(deathSounds != null && deathSounds.Length > 0)
+        {
+            int randomIndex = UnityEngine.Random.Range(0,deathSounds.Length);
+
+            AudioClip clip = deathSounds[randomIndex];
+
+            AudioSource.PlayClipAtPoint(
+                clip,
+                transform.position
+            );
         }
 
         StartCoroutine(HandleDeath());

@@ -1522,6 +1522,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &302097427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 302097428}
+  m_Layer: 0
+  m_Name: CrateSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &302097428
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302097427}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.59838, y: 1, z: 16.82905}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &327962465
 GameObject:
   m_ObjectHideFlags: 0
@@ -4280,6 +4311,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 893794202}
   m_Mesh: {fileID: 4300002, guid: 45fb3b613218da844b047d1f9349e0d6, type: 3}
+--- !u!1 &896605685 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7411488131376627180, guid: 67af77703df52364c99384c985e256d5, type: 3}
+  m_PrefabInstance: {fileID: 5646973883816002560}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &896792596
 GameObject:
   m_ObjectHideFlags: 0
@@ -5327,7 +5363,7 @@ Transform:
   m_GameObject: {fileID: 1189542752}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -40.69, y: 0.00001, z: 22.58}
+  m_LocalPosition: {x: 10, y: 10, z: 22.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5359,6 +5395,53 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -29.1, y: 0.00001, z: -26.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1216647722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1216647724}
+  - component: {fileID: 1216647723}
+  m_Layer: 0
+  m_Name: CrateSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1216647723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216647722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5269eae327ac0e74da55c40c757e2cc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CrateSpawner
+  MysteryBarrelPrefab: {fileID: 896605685}
+  spawnPoint:
+  - {fileID: 302097428}
+--- !u!4 &1216647724
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216647722}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.59838, y: -0, z: 16.82905}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7775,7 +7858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5ed7e9f6a457d4685e1b0e9789c608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
-  crateSpawner: {fileID: 0}
+  crateSpawner: {fileID: 1216647723}
   spawner: {fileID: 50378147}
   baseCount: 5
   breakBetweenWaves: 5
@@ -9929,7 +10012,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 14fbe81d68d09f940838863092dd76b8, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: ed4dae419549e714b8d42d0afeb8a2ce, type: 2}
   m_BuildHeightMesh: 0
 --- !u!64 &2080494062
 MeshCollider:
@@ -10742,3 +10825,5 @@ SceneRoots:
   - {fileID: 5646973883816002560}
   - {fileID: 2142645286}
   - {fileID: 298868874}
+  - {fileID: 1216647724}
+  - {fileID: 302097428}

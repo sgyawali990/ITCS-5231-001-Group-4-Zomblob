@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using UnityEngine.AI;
+using System.Xml.Serialization;
 
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
@@ -29,14 +30,19 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [Header("Death Effects")]
     [SerializeField] private AudioClip[] deathSounds;
 
+    [Header("Ammo Drop")]
+    [SerializeField] private GameObject ammoBoxPrefab;
+    [SerializeField] private float ammoDropChance = 0.1f;
+
     private Rigidbody rb;
     private NavMeshAgent agent;
     private ZombiePool owningPool;
     private Camera mainCamera;
 
-    [Header("Ammo Drop")]
-    [SerializeField] private GameObject ammoBoxPrefab;
-    [SerializeField] private float ammoDropChance = 0.1f;
+    private Rigidbody[] ragdollBodies;
+    private Collider[] ragdollColliders;
+
+    
 
 
     private void Awake()
@@ -49,6 +55,11 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
         if (enemyRenderer != null)
             originalColor = enemyRenderer.material.color;
+
+        ragdollBodies = GetComponentsInChildren<Rigidbody>();
+        ragdollColliders = GetComponentsInChildren<Collider>();
+
+        DisableRagdoll();
     }
 
     public void TakeDamage(float amount)
@@ -118,18 +129,10 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         {
             rb.isKinematic = false;
         }
+        EnableRagDoll();
+        PlayDeathSounds();
 
-        if(deathSounds != null && deathSounds.Length > 0)
-        {
-            int randomIndex = UnityEngine.Random.Range(0,deathSounds.Length);
-
-            AudioClip clip = deathSounds[randomIndex];
-
-            AudioSource.PlayClipAtPoint(
-                clip,
-                transform.position
-            );
-        }
+        
 
         StartCoroutine(HandleDeath());
     }
@@ -177,6 +180,61 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         {
             agent.enabled = false;
             agent.enabled = true;
+        }
+    }
+
+    private void DisableRagdoll()
+    {
+        foreach(Rigidbody body in ragdollBodies)
+        {
+            if(body != rb)
+            {
+                body.isKinematic = true;
+            }
+        }
+
+        foreach(Collider col in ragdollColliders)
+        {
+            if(col.gameObject != gameObject)
+            {
+                col.enabled = false;
+            }
+        }
+    }
+
+    private void EnableRagDoll()
+    {
+        foreach(Rigidbody body in ragdollBodies)
+        {
+            
+            body.isKinematic = false;
+            
+        }
+
+        foreach(Collider col in ragdollColliders)
+        {
+            col.enabled = true;
+        }
+
+        if(rb != null)
+        {
+            Vector3 fallDir = transform.forward * 2f +Vector3.up;
+            rb.AddForce(fallDir, ForceMode.Impulse);
+        }
+    }
+
+    private void PlayDeathSounds()
+    {
+        if(deathSounds != null && deathSounds.Length > 0)
+        {
+            int randomIndex = UnityEngine.Random.Range(0,deathSounds.Length);
+
+            AudioClip clip = deathSounds[randomIndex];
+
+            AudioSource.PlayClipAtPoint(
+                clip,
+                transform.position
+            );
         }
     }
 

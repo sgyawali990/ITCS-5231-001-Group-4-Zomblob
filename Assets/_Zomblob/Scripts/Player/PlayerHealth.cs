@@ -24,13 +24,15 @@ public class PlayerHealth : MonoBehaviour
     private float flashAlpha = 0f;
 
     private Animator animator;
+    [SerializeField] private GameObject weaponSocket;
 
     void Start()
     {
         currentHealth = maxHealth;
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         if (damageFlashImage != null) damageFlashImage.color = new Color(1, 0, 0, 0);
         UpdateUI();
+        
     }
 
     void Update()
@@ -86,5 +88,6 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player has died.");
         isDead = true;
         if (animator != null) animator.SetBool("isDead", true);
+        if (weaponSocket != null) weaponSocket.SetActive(false);
     }
 }

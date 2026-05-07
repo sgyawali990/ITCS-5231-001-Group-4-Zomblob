@@ -6913,6 +6913,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8758888183437201531, guid: 2caeb99d3229fee4aa4f3bc8c1c8fc07, type: 3}
   m_PrefabInstance: {fileID: 472831373}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &341227966 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9152774915350635558, guid: 4b0cd74701bb09841b7700c3e78fb769, type: 3}
+  m_PrefabInstance: {fileID: 1130494830}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &345104242
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24162,17 +24167,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2198716056989520779, guid: 4b0cd74701bb09841b7700c3e78fb769, type: 3}
-      propertyPath: fillImage
-      value: 
-      objectReference: {fileID: 1903459070}
-    - target: {fileID: 2198716056989520779, guid: 4b0cd74701bb09841b7700c3e78fb769, type: 3}
       propertyPath: healthText
       value: 
       objectReference: {fileID: 1861191953}
     - target: {fileID: 2198716056989520779, guid: 4b0cd74701bb09841b7700c3e78fb769, type: 3}
+      propertyPath: regenDelay
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2198716056989520779, guid: 4b0cd74701bb09841b7700c3e78fb769, type: 3}
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1248030086}
+    - target: {fileID: 2198716056989520779, guid: 4b0cd74701bb09841b7700c3e78fb769, type: 3}
+      propertyPath: weaponSocket
+      value: 
+      objectReference: {fileID: 341227966}
     - target: {fileID: 2198716056989520779, guid: 4b0cd74701bb09841b7700c3e78fb769, type: 3}
       propertyPath: damageFlashImage
       value: 
@@ -24228,6 +24237,10 @@ PrefabInstance:
     - target: {fileID: 6514055804965044809, guid: 4b0cd74701bb09841b7700c3e78fb769, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152774915350635558, guid: 4b0cd74701bb09841b7700c3e78fb769, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

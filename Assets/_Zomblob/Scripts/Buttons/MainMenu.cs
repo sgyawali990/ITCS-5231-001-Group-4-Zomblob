@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] private AudioSource musicSource;
+    [SerializeField] private Slider musicSlider;
     public string firstLevelName = "Level1";
     public string OptionsMenu = "options here";
     public string customizeMenu = "customize here";
@@ -11,18 +14,29 @@ public class MainMenu : MonoBehaviour
     public GameObject customizePage;
     public GameObject OptionsPage;
     public GameObject[] characters;
+    public GameObject Music;
+    public GameObject FireSound;
+    public GameObject MusicPanel;
+
 
     void Start()
     {
         Titlepage.SetActive(true);
         customizePage.SetActive(false);
         OptionsPage.SetActive(false);
+        Music.SetActive(true);
+        FireSound.SetActive(false);
+        musicSlider.value = musicSource.volume;
+        musicSlider.onValueChanged.AddListener(v=> musicSource.volume = v);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    public static class gameSettings{
+        public static bool calm = false;
     }
     public void startGame()
     {
@@ -34,12 +48,7 @@ public class MainMenu : MonoBehaviour
         Titlepage.SetActive(false);
         OptionsPage.SetActive(true);
     }
-    public void closeOptions()
-    {
-        FindObjectOfType<CameraSweep>().SweepToA();
-        OptionsPage.SetActive(false);
-        Titlepage.SetActive(true);
-    }
+ 
     public void Customize()
     {
         FindObjectOfType<CameraSweep>().SweepToB();
@@ -48,12 +57,35 @@ public class MainMenu : MonoBehaviour
         customizePage.SetActive(true);
 
     }
+    public void calmMode()
+    {
+        MusicPanel.SetActive(false);
+        Music.SetActive(false);
+        FireSound.SetActive(true);
+        gameSettings.calm = true;
+
+    }
+    public void exitCalmMode()
+    {
+        MusicPanel.SetActive(true);
+        Music.SetActive(true);
+        FireSound.SetActive(false);
+        gameSettings.calm = false;
+
+    }
     public void backToMenu()
     {
         FindObjectOfType<CameraSweep>().SweepToA();
         OptionsPage.SetActive(false);
         customizePage.SetActive(false);
         Titlepage.SetActive(true);
+        if (gameSettings.calm == true){
+        FireSound.SetActive(true);
+        Music.SetActive(false);
+         }else{
+        FireSound.SetActive(false);
+        Music.SetActive(true);
+    }
     }
     public void quitGame()
     {
@@ -87,4 +119,5 @@ public class MainMenu : MonoBehaviour
             }
         }
     }
+
 }

@@ -25,30 +25,37 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            isMenuOpen = !isMenuOpen;
-            SetGameplayState(!isMenuOpen);
-        }
+        bool currentlyPaused = Pause.isPaused;
 
-        if (!isMenuOpen)
+        if (!currentlyPaused)
         {
-            HandleMovementInput(); 
+            HandleMovementInput();
             HandleAiming();
+
+            if (Cursor.visible)
+            {
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = false;
+            }
         }
         else
         {
             CurrentSpeed = 0f;
             moveInput = Vector3.zero;
+
+            if (!Cursor.visible)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
         }
     }
 
     void FixedUpdate()
     {
-        if (isMenuOpen) return;
+        if (Pause.isPaused) return;
 
         float speed = isSprinting ? sprintSpeed : moveSpeed;
-
         if (moveInput.sqrMagnitude > 0.001f)
         {
             rb.MovePosition(rb.position + moveInput * speed * Time.fixedDeltaTime);

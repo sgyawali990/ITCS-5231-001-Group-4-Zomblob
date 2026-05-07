@@ -7775,6 +7775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5ed7e9f6a457d4685e1b0e9789c608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
+  crateSpawner: {fileID: 0}
   spawner: {fileID: 50378147}
   baseCount: 5
   breakBetweenWaves: 5
@@ -10499,6 +10500,30 @@ PrefabInstance:
       propertyPath: lootText
       value: 
       objectReference: {fileID: 130434772}
+    - target: {fileID: 3395429615997244345, guid: 67af77703df52364c99384c985e256d5, type: 3}
+      propertyPath: lootTable.Array.data[1].weight
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 3395429615997244345, guid: 67af77703df52364c99384c985e256d5, type: 3}
+      propertyPath: lootTable.Array.data[2].weight
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3395429615997244345, guid: 67af77703df52364c99384c985e256d5, type: 3}
+      propertyPath: lootTable.Array.data[3].weight
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3395429615997244345, guid: 67af77703df52364c99384c985e256d5, type: 3}
+      propertyPath: lootTable.Array.data[4].weight
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3395429615997244345, guid: 67af77703df52364c99384c985e256d5, type: 3}
+      propertyPath: lootTable.Array.data[5].weight
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3395429615997244345, guid: 67af77703df52364c99384c985e256d5, type: 3}
+      propertyPath: lootTable.Array.data[6].weight
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 3565848679486607504, guid: 67af77703df52364c99384c985e256d5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

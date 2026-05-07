@@ -10,6 +10,8 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float repathRate = 0.25f;
     private float repathTimer;
 
+    private Animator animator;
+
     private NavMeshAgent agent;
 
     [Header("Target")]
@@ -24,6 +26,8 @@ public class EnemyMovement : MonoBehaviour
 
     void Start()
     {
+
+        animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
 
         if (agent != null)
@@ -49,6 +53,7 @@ public class EnemyMovement : MonoBehaviour
             if (player != null)
                 playerTransform = player.transform;
         }
+        Debug.Log(animator.enabled);
     }
 
 
@@ -69,6 +74,8 @@ public class EnemyMovement : MonoBehaviour
             repathTimer = repathRate;
         }
 
+        animator.SetFloat("speed", agent.velocity.magnitude);
+
         if(Time.time < nextAttackTime)
         {
             return;
@@ -78,13 +85,20 @@ public class EnemyMovement : MonoBehaviour
 
         if(dist <= attackRange)
         {
-            
+
+            animator.SetTrigger("attack");  
             if(playerTransform.TryGetComponent<PlayerHealth>(out PlayerHealth health))
             {
+                Debug.Log("Found PlayerHealth");
                 
                 health.TakeDamage(damage);
                 nextAttackTime = Time.time + attackCooldown;
                 
+            }
+            else
+            {
+                Debug.Log("PlayerHealth NOT FOUND");
+                agent.isStopped = false;
             }
         }
     }

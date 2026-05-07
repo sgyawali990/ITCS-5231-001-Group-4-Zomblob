@@ -333,6 +333,11 @@ MonoBehaviour:
   flashTime: 0.1
   knockbackForce: 3
   deathTimer: 2
+  deathSounds:
+  - {fileID: 8300000, guid: 05c1c06196a6d774cac9a8ff0ca53ed3, type: 3}
+  - {fileID: 8300000, guid: 9f1bc4009683050488294587bbe6e90a, type: 3}
+  - {fileID: 8300000, guid: 48851327046637e4db5789988a0c3584, type: 3}
+  - {fileID: 8300000, guid: 04d49b30ffde5864a8ddf50dbbdbc03e, type: 3}
   ammoBoxPrefab: {fileID: 4547515507698780930, guid: e40cbd589256c5b4690363765d53fce0, type: 3}
   ammoDropChance: 0.3
 --- !u!54 &7120751141938013741
@@ -471,7 +476,7 @@ Animator:
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
+  m_AnimatePhysics: 1
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1

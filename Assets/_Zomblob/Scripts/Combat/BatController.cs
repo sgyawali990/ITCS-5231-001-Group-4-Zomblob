@@ -54,6 +54,8 @@ public class BatController : MonoBehaviour
 
     void Update()
     {
+        if (Pause.isPaused) return;
+
         // IDLE MOTION
         if (!swinging)
         {

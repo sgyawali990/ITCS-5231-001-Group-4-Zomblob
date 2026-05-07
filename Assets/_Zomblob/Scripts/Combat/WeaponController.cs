@@ -82,6 +82,8 @@ public class WeaponController : MonoBehaviour
     {
         if (fireInput == null || firePoint == null || inventory == null) return;
 
+        if (Pause.isPaused) return;
+
         if (isReloading) return;
 
         HandleDynamicSpread();
@@ -206,7 +208,11 @@ public class WeaponController : MonoBehaviour
         SpawnMuzzleFlash();
         PlayFireSound();
 
-        if (weaponData.weaponType != WeaponType.Shotgun)
+        if (weaponData.weaponType == WeaponType.Shotgun)
+        {
+            StartCoroutine(EjectShotgunShellDelayed());
+        }
+        else
         {
             EjectCasing();
         }
@@ -300,54 +306,69 @@ public class WeaponController : MonoBehaviour
         Rigidbody rb = casing.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.linearVelocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
+            if (playerController != null && playerController.GetComponent<Rigidbody>() != null)
+            {
+                rb.linearVelocity = playerController.GetComponent<Rigidbody>().linearVelocity;
+            }
 
-            // BASE EJECTION DIRECTION (RIGHT SIDE + UP)
-            Vector3 ejectDir =
-                casingEjectPoint.right * Random.Range(1.5f, 2.5f) +
-                casingEjectPoint.up * Random.Range(0.8f, 1.5f);
-
-            float forceMultiplier = 1f;
+            Vector3 ejectDir = Vector3.zero;
+            float torqueAmount = 5f;
+            float forceMult = 1f;
 
             switch (weaponData.weaponType)
             {
                 case WeaponType.Glock:
                 case WeaponType.MP5:
-                    forceMultiplier = 1.2f;
+                    ejectDir = casingEjectPoint.right + (casingEjectPoint.up * 0.5f) - (casingEjectPoint.forward * 0.2f);
+                    forceMult = 2.5f;
                     break;
 
                 case WeaponType.AK47:
-                    forceMultiplier = 1.5f;
-                    break;
-
-                case WeaponType.M16A1:
-                    forceMultiplier = 1.3f;
+                    ejectDir = casingEjectPoint.right + (casingEjectPoint.up * 1.2f) + (casingEjectPoint.forward * 0.5f);
+                    forceMult = 3.5f;
+                    torqueAmount = 12f; 
                     break;
 
                 case WeaponType.Barrett:
-                    forceMultiplier = 0.8f;
+                    ejectDir = casingEjectPoint.right + (casingEjectPoint.up * 0.2f);
+                    forceMult = 1.8f;
+                    torqueAmount = 3f; 
                     break;
 
                 case WeaponType.Shotgun:
-                    forceMultiplier = 1.0f;
+                    ejectDir = casingEjectPoint.right + (casingEjectPoint.up * 0.3f);
+                    forceMult = 1.2f;
+                    torqueAmount = 2f;
+                    break;
+
+                default:
+                    ejectDir = casingEjectPoint.right + (casingEjectPoint.up * 0.5f);
+                    forceMult = 2f;
                     break;
             }
 
-            rb.AddForce(ejectDir * forceMultiplier, ForceMode.Impulse);
+            Vector3 finalForce = ejectDir * forceMult;
+            finalForce += new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f));
 
-            rb.AddTorque(
-                new Vector3(
-                    Random.Range(2f, 6f),
-                    Random.Range(2f, 6f),
-                    Random.Range(2f, 6f)
-                ),
-                ForceMode.Impulse
-            );
+            rb.AddForce(finalForce, ForceMode.Impulse);
+
+            rb.AddTorque(new Vector3(
+                Random.Range(-torqueAmount, torqueAmount),
+                Random.Range(-torqueAmount, torqueAmount),
+                Random.Range(-torqueAmount, torqueAmount)
+            ), ForceMode.Impulse);
         }
 
         Destroy(casing, 10f);
     }
+
+    IEnumerator EjectShotgunShellDelayed()
+    {
+        yield return new WaitForSeconds(0.3f);
+
+        EjectCasing();
+    }
+
 
     private void ProcessShot(Vector3 origin, Vector3 direction)
     {

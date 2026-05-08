@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System;
+using TMPro;
 
 public class WaveManager : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private int bossEveryNWaves = 5;
     [SerializeField] private int maxWaves = 5;
     [SerializeField] private int waveCount = 0;
+
+    [Header("UI")]
+    [SerializeField] private TextMeshProUGUI waveText;
 
     private int waveIndex = 0;
     private int alive = 0;
@@ -30,6 +34,7 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
+        UpdateWaveUI();
         StartCoroutine(RunWaves());
     }
 
@@ -39,6 +44,8 @@ public class WaveManager : MonoBehaviour
     {
         waveIndex++;
         waveCount = waveIndex;
+
+        UpdateWaveUI();
 
         crateSpawner.SpawnRandomCrate();
 
@@ -79,8 +86,13 @@ public class WaveManager : MonoBehaviour
 
         yield return new WaitForSeconds(breakBetweenWaves);
     }
-
 }
+
+private void UpdateWaveUI()
+    {
+        if (waveText != null)
+            waveText.text = "Wave: " + waveIndex + " / " + maxWaves;
+    }
 
     private void OnEnemySpawned() => alive++;
     private void OnEnemyDied() => alive = Mathf.Max(0, alive - 1);

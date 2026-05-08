@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 2884084350569737892}
   - component: {fileID: 1322441256801035198}
   m_Layer: 0
-  m_Name: EnemyDummy
+  m_Name: EnemyDummy 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -470,7 +470,7 @@ Animator:
   m_GameObject: {fileID: 6401030854878353769}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: aaeb32cf0a92ffa40a0abed3c82f7982, type: 3}
-  m_Controller: {fileID: 9100000, guid: 8b90d1ef27cb1a64687ceb1cca80af2b, type: 2}
+  m_Controller: {fileID: 9100000, guid: c209241a7ac1d6e42b0f367e63895623, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -570,7 +570,6 @@ GameObject:
   - component: {fileID: 5340445393440828753}
   - component: {fileID: 7450587147370607114}
   - component: {fileID: 5299606193969264008}
-  - component: {fileID: 6755815895753955069}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -675,25 +674,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FloatingHealthBar
   slider: {fileID: 680296762413779713}
   targetTransform: {fileID: 0}
---- !u!95 &6755815895753955069
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8456691341436909719}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c05b464b9b013d041b5eddb090eb9a6b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0

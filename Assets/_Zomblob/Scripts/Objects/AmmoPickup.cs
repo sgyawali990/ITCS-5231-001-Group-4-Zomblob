@@ -3,7 +3,7 @@ using UnityEngine;
 public class AmmoPickup : MonoBehaviour
 {
     public int ammoAmount = 30;
-    public int pityAmmo = 15;
+    public int pityAmmo = 10;
 
     void Update()
     {

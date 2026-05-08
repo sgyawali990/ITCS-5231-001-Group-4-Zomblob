@@ -9234,7 +9234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1e3fb99cd4cb5c4cbe9509e5df70f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombiePool
-  prefab: {fileID: 6401030854878353769, guid: 94d99bfe25b802844b9116202baecd8d, type: 3}
+  prefab: {fileID: 6917604134894044800, guid: e85fe4581f6ab3943adedb23178163aa, type: 3}
   poolSize: 20
 --- !u!4 &424291681
 Transform:
@@ -44291,7 +44291,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2080494061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44322,7 +44322,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 0ae89a7b7f20f124f954bd0fe9e5edce, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 2a324aec00baf2e4392274bcc87fbf1b, type: 2}
   m_BuildHeightMesh: 0
 --- !u!64 &2080494062
 MeshCollider:
@@ -44412,7 +44412,7 @@ Transform:
   m_GameObject: {fileID: 2080494060}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []

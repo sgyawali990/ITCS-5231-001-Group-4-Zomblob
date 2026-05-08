@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro; // Added for text support
+using System.Collections; // coroutine support
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -23,14 +24,20 @@ public class PlayerHealth : MonoBehaviour
     private float lastDamageTime;
     private float flashAlpha = 0f;
 
+    [Header("Miscellaneous")]
     private Animator animator;
+    [SerializeField] private GameObject weaponSocket;
+    [SerializeField] private GameObject Music;
+    [SerializeField] private GameObject DeathScreen;
+    [SerializeField] private GameObject everythingElse;
 
     void Start()
     {
         currentHealth = maxHealth;
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         if (damageFlashImage != null) damageFlashImage.color = new Color(1, 0, 0, 0);
         UpdateUI();
+        
     }
 
     void Update()
@@ -86,5 +93,13 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player has died.");
         isDead = true;
         if (animator != null) animator.SetBool("isDead", true);
+        if (weaponSocket != null) weaponSocket.SetActive(false);
+        if (Music != null) Music.SetActive(false);
+        StartCoroutine(HandleDeathScreen());
+    }
+    private IEnumerator HandleDeathScreen(){
+        yield return new WaitForSeconds(4f); // Wait for death animation to finish
+        if (DeathScreen != null) DeathScreen.SetActive(true);
+        if (everythingElse != null) everythingElse.SetActive(false);
     }
 }

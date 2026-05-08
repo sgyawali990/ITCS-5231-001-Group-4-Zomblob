@@ -51,4 +51,9 @@ public class Pause : MonoBehaviour
     {
         Application.Quit();
     }
+    public void RestartLevel()
+    {
+        Time.timeScale = 1f;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+    }
 }

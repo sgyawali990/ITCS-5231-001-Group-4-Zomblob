@@ -74,7 +74,6 @@ public class WaveManager : MonoBehaviour
         
         while (alive > 0)
         {
-            Debug.Log($"Waiting... Enemies Alive: {alive}");
             yield return null;
         }
 

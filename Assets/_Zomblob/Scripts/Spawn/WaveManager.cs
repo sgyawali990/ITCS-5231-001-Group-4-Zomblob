@@ -39,8 +39,11 @@ public class WaveManager : MonoBehaviour
     {
         waveIndex++;
         waveCount = waveIndex;
-
-        crateSpawner.SpawnRandomCrate();
+            
+        if (crateSpawner != null)
+        {
+                crateSpawner.SpawnRandomCrate();
+        }
 
         bool isBossWave = waveIndex % bossEveryNWaves == 0;
 
@@ -67,7 +70,6 @@ public class WaveManager : MonoBehaviour
         
         while (alive > 0)
         {
-            Debug.Log($"Waiting... Enemies Alive: {alive}");
             yield return null;
         }
 
